@@ -12,7 +12,7 @@ const AuthForm: React.FC = () => {
       <h1 className="text-center text-white font-bold text-2xl mb-2">
         {isLogin ? "Login" : "Sign Up"}
       </h1>
-      <form className="w-64">
+      <form className="w-auto">
         <div className="flex flex-col mb-4">
           <label htmlFor="email" className="block text-white text-sm font-bold mb-2">
             Your Email
@@ -25,12 +25,12 @@ const AuthForm: React.FC = () => {
           </label>
           <input type="password" id="password" required />
         </div>
-        <div className={`flex ${isLogin ? "flex-row" : "flex-col"} gap-3 items-center justify-between`}>
+        <div className={`flex flex-row gap-3 items-center justify-between`}>
           <button
             type="button"
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            {isLogin ? "Sign In" : "Create Account"}
+            {isLogin ? "Sign In" : "Sign Up"}
           </button>
           <button
             type="button"
