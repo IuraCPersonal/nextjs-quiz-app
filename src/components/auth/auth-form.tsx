@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const AuthForm: React.FC = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const switchAuthModelHandler = () => {
     setIsLogin((prevState) => !prevState)
