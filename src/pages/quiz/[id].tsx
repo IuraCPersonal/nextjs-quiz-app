@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 import Layout from "@/components/layout/layout";
+import QuizPage from "@/components/quizzes/quiz-page";
 
 interface Question {
   id: number;
@@ -10,18 +11,17 @@ interface Question {
   answers: string[];
 }
 
-interface TQuiz {
+export interface TQuiz {
   id: number;
   questions: Question[];
   title: string;
 }
 
-const QuizPage: React.FC = () => {
+const QuizzesPage: React.FC = () => {
   const router = useRouter();
   const quizId = router.query.id;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [loadedQuiz, setLoadedQuiz] = useState<Partial<TQuiz>>({});
 
   const config = {
@@ -42,8 +42,6 @@ const QuizPage: React.FC = () => {
         return response.data;
       })
       .then((data) => {
-        console.log(data);
-
         setIsLoading(false);
         setLoadedQuiz(data);
       })
@@ -52,23 +50,11 @@ const QuizPage: React.FC = () => {
       });
   }, []);
 
-  if (isLoading) {
-    return (
-      <section>
-        <p>Loading...</p>
-      </section>
-    );
-  } else {
-    return (
-      <Layout>
-        <section className="flex min-h-screen flex-col items-center justify-between mt-2">
-          <div className="p-12 font-bold text-4xl flex flex-col items-center justify-center">
-            <h1>{loadedQuiz.title}</h1>
-          </div>
-        </section>
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      <QuizPage {...loadedQuiz} />
+    </Layout>
+  );
 };
 
-export default QuizPage;
+export default QuizzesPage;

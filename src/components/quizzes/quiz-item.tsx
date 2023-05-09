@@ -17,7 +17,7 @@ const QuizItem: React.FC<Props> = ({ id, title, questions_count }) => {
       >
         <span className="absolute inset-0 border-2 border-dashed border-black"></span>
 
-        <div className="relative flex h-full transform items-end border-2 border-black bg-gray-800 transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <div className="relative flex h-full transform items-end border-2 border-black bg-gray-50 transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 text-black">
           <div className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
             <svg
               xmlns="http://www.w3.org/2000/svg"
