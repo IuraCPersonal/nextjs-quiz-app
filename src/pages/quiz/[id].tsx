@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
 import Layout from "@/components/layout/layout";
 import QuizPage from "@/components/quizzes/quiz-page";
+import AuthContext from "@/components/utils/auth-context";
 
 interface Question {
   id: number;
@@ -23,6 +24,8 @@ const QuizzesPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [loadedQuiz, setLoadedQuiz] = useState<Partial<TQuiz>>({});
+
+  const authCtx = useContext(AuthContext);
 
   const config = {
     headers: {
@@ -50,11 +53,15 @@ const QuizzesPage: React.FC = () => {
       });
   }, []);
 
-  return (
-    <Layout>
-      <QuizPage {...loadedQuiz} />
-    </Layout>
-  );
+  if (authCtx.isLoggedIn) {
+    return (
+      <Layout>
+        <QuizPage {...loadedQuiz} />
+      </Layout>
+    );
+  } else {
+    router.push("/auth");
+  }
 };
 
 export default QuizzesPage;
